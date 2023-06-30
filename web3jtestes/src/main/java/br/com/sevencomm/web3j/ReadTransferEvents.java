@@ -1,8 +1,10 @@
 package br.com.sevencomm.web3j;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.web3j.protocol.Web3j;
+import org.web3j.protocol.core.DefaultBlockParameter;
 import org.web3j.protocol.core.DefaultBlockParameterName;
 import org.web3j.protocol.http.HttpService;
 import org.web3j.tx.ReadonlyTransactionManager;
@@ -24,7 +26,7 @@ public class ReadTransferEvents {
 		TokenUSDC usdc = TokenUSDC.load(contractAddress, web3j, readonlyTransactionManager,
 				contractGasProvider);
 
-		List<TransferEventResponse> listTransferEvents = usdc.transferEvent(DefaultBlockParameterName.EARLIEST,
+		List<TransferEventResponse> listTransferEvents = usdc.transferEvent(DefaultBlockParameter.valueOf(BigInteger.valueOf(37369832)),
 				DefaultBlockParameterName.LATEST);
 
 		for(TransferEventResponse t: listTransferEvents) {
